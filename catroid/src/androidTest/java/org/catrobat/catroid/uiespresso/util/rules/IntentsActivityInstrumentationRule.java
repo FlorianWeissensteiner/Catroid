@@ -20,47 +20,36 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.catrobat.catroid.utils;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.support.v7.widget.AppCompatEditText;
-import android.util.AttributeSet;
+package org.catrobat.catroid.uiespresso.util.rules;
 
-public class BrickEditText extends AppCompatEditText {
+import android.app.Activity;
+import android.support.test.espresso.intent.Intents;
 
-	private static final int SHADOW_RADIUS = 3;
-	private static final int SHADOW_REPEAT = 3;
-	private static boolean highContrast = false;
+public class IntentsActivityInstrumentationRule<T extends Activity> extends
+		BaseActivityInstrumentationRule<T> {
 
-	public BrickEditText(Context context) {
-		super(context);
+	public IntentsActivityInstrumentationRule(Class<T> activityClass, boolean initialTouchMode, boolean launchActivity) {
+		super(activityClass, initialTouchMode, launchActivity);
 	}
 
-	public BrickEditText(Context context, AttributeSet attributeSet) {
-		super(context, attributeSet);
+	public IntentsActivityInstrumentationRule(Class<T> activityClass, boolean initialTouchMode) {
+		super(activityClass, initialTouchMode);
 	}
 
-	public BrickEditText(Context context, AttributeSet attributeSet, int defStyle) {
-		super(context, attributeSet, defStyle);
+	public IntentsActivityInstrumentationRule(Class<T> activityClass) {
+		super(activityClass);
 	}
 
 	@Override
-	protected void onDraw(Canvas canvas) {
-		if (highContrast) {
-			getPaint().setShadowLayer(SHADOW_RADIUS, 0, 0, Color.BLACK);
-			getPaint().setShader(null);
-
-			for (int i = 0; i < SHADOW_REPEAT; i++) {
-				super.onDraw(canvas);
-			}
-		} else {
-			super.onDraw(canvas);
-		}
+	protected void afterActivityLaunched() {
+		Intents.init();
+		super.afterActivityLaunched();
 	}
 
-	public static void setHighContrast(boolean enabled) {
-		highContrast = enabled;
+	@Override
+	protected void afterActivityFinished() {
+		super.afterActivityFinished();
+		Intents.release();
 	}
 }

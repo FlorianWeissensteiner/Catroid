@@ -37,7 +37,7 @@ import org.catrobat.catroid.content.bricks.BroadcastBrick;
 import org.catrobat.catroid.formulaeditor.UserVariable;
 import org.catrobat.catroid.formulaeditor.datacontainer.DataContainer;
 import org.catrobat.catroid.stage.StageActivity;
-import org.catrobat.catroid.uiespresso.util.BaseActivityInstrumentationRule;
+import org.catrobat.catroid.uiespresso.util.rules.BaseActivityInstrumentationRule;
 import org.catrobat.catroid.uiespresso.util.UiTestUtils;
 import org.junit.Before;
 import org.junit.Rule;

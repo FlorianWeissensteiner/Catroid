@@ -184,7 +184,7 @@ import java.util.Locale;
 
 public class CategoryBricksFactory {
 
-	private static boolean starterBricksEnabled;
+	private static boolean starterBricks;
 
 	public List<Brick> getBricks(String category, Sprite sprite, Context context) {
 
@@ -238,7 +238,7 @@ public class CategoryBricksFactory {
 		defaultIf.setRightChild(new FormulaElement(ElementType.NUMBER, "2", null));
 
 		List<Brick> eventBrickList = new ArrayList<>();
-		if (!starterBricksEnabled) {
+		if (!starterBricks) {
 			eventBrickList.add(new WhenStartedBrick(null));
 			eventBrickList.add(new WhenBrick(null));
 			eventBrickList.add(new WhenTouchDownBrick());
@@ -272,7 +272,7 @@ public class CategoryBricksFactory {
 		defaultIf.setRightChild(new FormulaElement(ElementType.NUMBER, "2", null));
 
 		List<Brick> controlBrickList = new ArrayList<>();
-		if (!starterBricksEnabled) {
+		if (!starterBricks) {
 			controlBrickList.add(new WaitBrick(BrickValues.WAIT));
 			controlBrickList.add(new NoteBrick(context.getString(R.string.brick_note_default_value)));
 			controlBrickList.add(new ForeverBrick());
@@ -326,7 +326,7 @@ public class CategoryBricksFactory {
 
 	private List<Brick> setupMotionCategoryList(Sprite sprite, Context context) {
 		List<Brick> motionBrickList = new ArrayList<>();
-		if (!starterBricksEnabled) {
+		if (!starterBricks) {
 			motionBrickList.add(new PlaceAtBrick(BrickValues.X_POSITION, BrickValues.Y_POSITION));
 			motionBrickList.add(new SetXBrick(BrickValues.X_POSITION));
 			motionBrickList.add(new SetYBrick(BrickValues.Y_POSITION));
@@ -390,7 +390,7 @@ public class CategoryBricksFactory {
 
 	private List<Brick> setupSoundCategoryList(Context context) {
 		List<Brick> soundBrickList = new ArrayList<>();
-		if (!starterBricksEnabled) {
+		if (!starterBricks) {
 			soundBrickList.add(new PlaySoundBrick());
 			soundBrickList.add(new PlaySoundAndWaitBrick());
 			soundBrickList.add(new StopAllSoundsBrick());
@@ -424,7 +424,7 @@ public class CategoryBricksFactory {
 	private List<Brick> setupLooksCategoryList(Context context, boolean isBackgroundSprite) {
 		List<Brick> looksBrickList = new ArrayList<>();
 
-		if (!starterBricksEnabled) {
+		if (!starterBricks) {
 			if (!isBackgroundSprite) {
 				looksBrickList.add(new SetLookBrick());
 				looksBrickList.add(new SetLookByIndexBrick(BrickValues.SET_LOOK_BY_INDEX));
@@ -506,7 +506,7 @@ public class CategoryBricksFactory {
 
 	private List<Brick> setupDataCategoryList(Context context) {
 		List<Brick> dataBrickList = new ArrayList<>();
-		if (!starterBricksEnabled) {
+		if (!starterBricks) {
 			dataBrickList.add(new SetVariableBrick(BrickValues.SET_VARIABLE));
 			dataBrickList.add(new ChangeVariableBrick(BrickValues.CHANGE_VARIABLE));
 			dataBrickList.add(new ShowTextBrick(BrickValues.X_POSITION, BrickValues.Y_POSITION));
@@ -745,11 +745,11 @@ public class CategoryBricksFactory {
 		return category;
 	}
 
-	public static void enableStarterBricks() {
-		starterBricksEnabled = true;
+	public static void setStarterBricks(boolean enabled) {
+		starterBricks = enabled;
 	}
 
-	public static boolean getStarterBricksEnabled() {
-		return starterBricksEnabled;
+	public static boolean isStarterBricks() {
+		return starterBricks;
 	}
 }

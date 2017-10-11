@@ -37,7 +37,7 @@ import org.catrobat.catroid.pocketmusic.PocketMusicActivity;
 import org.catrobat.catroid.pocketmusic.ui.TactScrollRecyclerView;
 import org.catrobat.catroid.pocketmusic.ui.TrackRowView;
 import org.catrobat.catroid.pocketmusic.ui.TrackView;
-import org.catrobat.catroid.uiespresso.util.BaseActivityInstrumentationRule;
+import org.catrobat.catroid.uiespresso.util.rules.BaseActivityInstrumentationRule;
 import org.catrobat.catroid.uiespresso.util.UiTestUtils;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;

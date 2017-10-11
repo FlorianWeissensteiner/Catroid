@@ -73,6 +73,7 @@ public class AccessibilityProfilesActivity extends BaseActivity {
 	public void openProfile(View view) {
 		Intent intent = new Intent(AccessibilityProfilesActivity.this, AccessibilityPreferencesActivity.class);
 		intent.putExtra(PROFILE_ID, view.getId());
+		System.out.println("BANANA - " + view.getId());
 		startActivity(intent);
 	}
 
